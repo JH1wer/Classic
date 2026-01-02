@@ -4,7 +4,8 @@ Packages/
 ServerPackages/
 DevPackages/
 
-src/services/
+src/services/CameraService/
 
+.env
 wally.lock
 sourcemap.json
