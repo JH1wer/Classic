@@ -1,11 +1,11 @@
 node_modules/
+.env
 
 Packages/
 ServerPackages/
 DevPackages/
 
-src/services/CameraService/
-
-.env
 wally.lock
 sourcemap.json
+
+# BETA SERVICES
