@@ -1,0 +1,95 @@
+{
+  "name": "genrojotree",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "Shared": {
+        "$className": "Folder",
+        "Services": {
+          "$className": "Folder",
+          "CameraService": {
+            "$className": "Folder",
+            "CameraServiceClient": {
+              "$path": "src/services/CameraService/Client.lua"
+            },
+            "CameraServiceTypes": {
+              "$path": "src/services/CameraService/Types.lua"
+            },
+            "CameraServiceUtils": {
+              "$path": "src/services/CameraService/Utils.lua"
+            }
+          },
+          "DataService": {
+            "$className": "Folder",
+            "DataServiceClient": {
+              "$path": "src/services/DataService/Client.lua"
+            },
+            "DataConfigs": {
+              "$path": "src/services/DataService/DataConfigs.lua"
+            },
+            "DataHandler": {
+              "$path": "src/services/DataService/DataHandler.lua"
+            },
+            "DataTemplates": {
+              "$path": "src/services/DataService/DataTemplates.lua"
+            },
+            "DataServiceTypes": {
+              "$path": "src/services/DataService/Types.lua"
+            },
+            "DataServiceUtils": {
+              "$path": "src/services/DataService/Utils.lua"
+            }
+          }
+        },
+        "Classes": {
+          "$className": "Folder"
+        },
+        "Modules": {
+          "$className": "Folder"
+        }
+      },
+      "Packages": {
+        "$path": "Packages"
+      },
+      "UI": {
+        "$path": "src/ui"
+      }
+    },
+    "ServerScriptService": {
+      "Server": {
+        "$path": "src/startup/Server.server.lua"
+      },
+      "Services": {
+        "$className": "Folder",
+        "CameraService": {
+          "$className": "Folder",
+          "CameraServiceServer": {
+            "$path": "src/services/CameraService/Server.lua"
+          }
+        },
+        "DataService": {
+          "$className": "Folder",
+          "DataServiceServer": {
+            "$path": "src/services/DataService/Server.lua"
+          }
+        }
+      },
+      "Classes": {
+        "$className": "Folder"
+      },
+      "Modules": {
+        "$className": "Folder"
+      },
+      "ServerPackages": {
+        "$path": "ServerPackages"
+      }
+    },
+    "StarterPlayer": {
+      "StarterPlayerScripts": {
+        "Client": {
+          "$path": "src/startup/Client.client.lua"
+        }
+      }
+    }
+  }
+}
