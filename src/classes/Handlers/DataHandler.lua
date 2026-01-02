@@ -1,7 +1,7 @@
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
 local Signal = require(ReplicatedStorage.Packages.Signal)
-local DataConfigs = require(script.Parent.DataConfigs)
-local DataServiceTypes = require(script.Parent.DataServiceTypes)
+local DataConfigs = require(ReplicatedStorage.Shared.Modules.Core.DataConfigs)
+local DataServiceTypes = require(ReplicatedStorage.Shared.Services.DataService.DataServiceTypes)
 
 local DataHandler = {}
 DataHandler.__index = DataHandler

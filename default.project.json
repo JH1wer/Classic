@@ -24,15 +24,6 @@
             "DataServiceClient": {
               "$path": "src/services/DataService/Client.lua"
             },
-            "DataConfigs": {
-              "$path": "src/services/DataService/DataConfigs.lua"
-            },
-            "DataHandler": {
-              "$path": "src/services/DataService/DataHandler.lua"
-            },
-            "DataTemplates": {
-              "$path": "src/services/DataService/DataTemplates.lua"
-            },
             "DataServiceTypes": {
               "$path": "src/services/DataService/Types.lua"
             },
@@ -42,10 +33,25 @@
           }
         },
         "Classes": {
-          "$className": "Folder"
+          "$className": "Folder",
+          "Handlers": {
+            "$className": "Folder",
+            "DataHandler": {
+              "$path": "src/classes/Handlers/DataHandler.lua"
+            }
+          }
         },
         "Modules": {
-          "$className": "Folder"
+          "$className": "Folder",
+          "Core": {
+            "$className": "Folder",
+            "DataConfigs": {
+              "$path": "src/modules/Core/DataConfigs.lua"
+            },
+            "DataTemplates": {
+              "$path": "src/modules/Core/DataTemplates.lua"
+            }
+          }
         }
       },
       "Packages": {

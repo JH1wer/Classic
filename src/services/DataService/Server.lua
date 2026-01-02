@@ -4,8 +4,8 @@ local RunService = game:GetService("RunService")
 local ServerScriptService = game:GetService("ServerScriptService")
 local ProfileStore = require(ServerScriptService.ServerPackages.ProfileStore)
 local Networker = require(ReplicatedStorage.Packages.Networker)
-local DataHandler = require(ReplicatedStorage.Shared.Services.DataService.DataHandler)
-local DataTemplates = require(ReplicatedStorage.Shared.Services.DataService.DataTemplates)
+local DataHandler = require(ReplicatedStorage.Shared.Classes.Handlers.DataHandler)
+local DataTemplates = require(ReplicatedStorage.Shared.Modules.Core.DataTemplates)
 
 local DataServiceServer = {
     Profiles = {} :: { [Player]: ProfileStore.Profile<any> },
