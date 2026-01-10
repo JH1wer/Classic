@@ -1,10 +1,11 @@
 {
 	"stylua.targetReleaseVersion": "latest",
-	 "workbench.editor.customLabels.patterns": {
-        "**/init.lua": "${dirname} (${filename}.${extname})",
-        "**/init.luau": "${dirname} (${filename}.${extname})",
-		"**/Client.luau": "${dirname}${filename}.${extname}",
-		"**/Server.luau": "${dirname}${filename}.${extname}",
-		"**/Utils.luau": "${dirname}${filename}.${extname}",
-    },
+	"workbench.editor.customLabels.patterns": {
+		"**/init.lua": "${dirname} (${filename}.${extname})",
+		"**/Client.lua": "${dirname}${filename}.${extname}",
+		"**/Server.lua": "${dirname}${filename}.${extname}",
+		"**/Utils.lua": "${dirname}${filename}.${extname}",
+		"**/Types.lua": "${dirname}${filename}.${extname}",
+	},
+	"luau-lsp.plugin.enabled": true,
 }

@@ -6,14 +6,17 @@ local ProfileStore = require(ServerScriptService.ServerPackages.ProfileStore)
 local Networker = require(ReplicatedStorage.Packages.Networker)
 local DataHandler = require(ReplicatedStorage.Shared.Classes.Handlers.DataHandler)
 local DataTemplates = require(ReplicatedStorage.Shared.Modules.Core.DataTemplates)
+local DataServiceUtils = require(ReplicatedStorage.Shared.Services.DataService.DataServiceUtils)
+local Signal = require(ReplicatedStorage.Packages.Signal)
 
 local DataServiceServer = {
     Profiles = {} :: { [Player]: ProfileStore.Profile<any> },
-    Datas = {} :: { [Player]: DataHandler.DataHandler<any> }
+    Datas = {} :: { [Player]: DataHandler.DataHandler<any> },
+    _signals = {} :: { [Player]: Signal.Signal<any> }
 }
 
 function DataServiceServer.Init(self: DataServiceServer): ()
-    local StoreName = if RunService:IsStudio() then "TestPlace" else "Official"
+    local StoreName = if RunService:IsStudio() then "MockPlace" else "OfficialGamedata"
     self.StoreGame = ProfileStore.New(StoreName, DataTemplates.TEMPLATE)
     self.Networker = Networker.server.new("DataService", self, {
         self.Get,
@@ -45,20 +48,42 @@ function DataServiceServer._PlayerAddedConnect(self: DataServiceServer, Player: 
 
         if Player:IsDescendantOf(Players) then
             self.Profiles[Player] = Profile
-            
-            local ProfileData = Profile.Data
-            self.Datas[Player] = DataHandler.New(ProfileData)
 
-            self.Datas[Player]._signals.save:Connect(function()
-                local ThatPlayer = Player
-
-                print("[DataServiceServer] A data de " .. ThatPlayer.DisplayName .. " foi salva!")
-            end)
+            self:_initializePlayerdata(Player, Profile.Data)
         else
             Profile:EndSession()
         end
     else
         Player:Kick("Profile Error")
+    end
+end
+
+function DataServiceServer.waitData(self: DataServiceServer, Player: Player): DataHandler.DataHandler<any>
+    local data = self.Datas[Player]
+    if data then
+        return data
+    end
+
+    local waitSignal = self._signals[Player]
+    if(not waitSignal) then
+        waitSignal = Signal.new()
+        self._signals[Player] = waitSignal
+    end
+
+    waitSignal:Wait()
+    return self.Datas[Player]
+end
+
+function DataServiceServer._initializePlayerdata(self: DataServiceServer, Player: Player, Data: any): ()
+    self.Datas[Player] = DataHandler.New(Data)
+    self:PlayerEvent(Player, Data)
+    self.Networker:fire(Player, DataServiceUtils.Enums.Action.Init, Data)
+
+    local waitSignal = self._signals[Player]
+    if waitSignal then
+        waitSignal:Fire()
+        waitSignal:Destroy()
+        self._signals[Player] = nil
     end
 end
 
@@ -76,6 +101,8 @@ end
 function DataServiceServer.Set(self: DataServiceServer, Player: Player, Path: DataHandler.Path, Value: any): ()
     self.Datas[Player]:Set(Path, Value)
 end
+
+function DataServiceServer.PlayerEvent(self: DataServiceServer, _Player: Player, _data: any): () end
 
 type DataServiceServer = typeof(DataServiceServer) & {
     Networker: Networker.Server,

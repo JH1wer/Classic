@@ -30,6 +30,18 @@
             "DataServiceUtils": {
               "$path": "src/services/DataService/Utils.lua"
             }
+          },
+          "MovesetService": {
+            "$className": "Folder",
+            "MovesetServiceClient": {
+              "$path": "src/services/MovesetService/Client.lua"
+            },
+            "MovesetServiceTypes": {
+              "$path": "src/services/MovesetService/Types.lua"
+            },
+            "MovesetServiceUtils": {
+              "$path": "src/services/MovesetService/Utils.lua"
+            }
           }
         },
         "Classes": {
@@ -77,6 +89,12 @@
           "$className": "Folder",
           "DataServiceServer": {
             "$path": "src/services/DataService/Server.lua"
+          }
+        },
+        "MovesetService": {
+          "$className": "Folder",
+          "MovesetServiceServer": {
+            "$path": "src/services/MovesetService/Server.lua"
           }
         }
       },
